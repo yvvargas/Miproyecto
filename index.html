@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi Registro Sencillo</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+    <div class="tarjeta">
+        <h1>📝 Registro de inventario</h1>
+        
+        <div class="formulario">
+            <input type="text" id="miTexto" placeholder="Escribe algo (ej: PC Activa)">
+            <input type="text" id="miCantidad" placeholder="Ingrese la cantidad">
+            <input type="date" id="miFecha">
+            <button onclick="guardarDato()">Guardar</button>
+        </div>
+
+        <hr>
+
+        <h2>Datos Registrados:</h2>
+        <ul id="listaDeDatos"></ul>
+    </div>
+
+    <script>
+        function guardarDato() {
+            // 1. Agarramos los valores que escribiste en la pantalla
+            let texto = document.getElementById('miTexto').value;
+            let cantidad = document.getElementById('miCantidad').value;
+            let fecha = document.getElementById('miFecha').value;
+
+            // 2. Creamos un renglón nuevo de lista con esos datos
+            let nuevoItem = "<li>" + fecha + " — " + texto + " — " + cantidad + "</li>";
+
+            // 3. Lo metemos dentro de nuestra lista <ul>
+            document.getElementById('listaDeDatos').innerHTML += nuevoItem;
+        }
+    </script>
+
+</body>
+</html>
