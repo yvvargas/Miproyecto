@@ -1,0 +1,32 @@
+name: Agente de Despliegue Web
+
+on:
+  push:
+    branches: ["main"] # Asegúrate de que tu rama principal se llame main (o master)
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🤖 Agente clonando el repositorio
+        uses: actions/checkout@v4
+
+      - name: 🤖 Agente configurando las páginas web
+        uses: actions/configure-pages@v4
+
+      - name: 🤖 Agente empaquetando HTML/CSS
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.' # Sube todos los archivos de la raíz
+
+      - name: 🤖 Agente publicando en internet
+        id: deployment
+        uses: actions/deploy-pages@v4
